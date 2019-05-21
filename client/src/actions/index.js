@@ -23,6 +23,16 @@ export const fetchSurveys = () => async dispatch => {
 };
 
 export const deleteSurvey = surveyId => async dispatch => {
-  const res = await axios.post ('/api/survey_delete', {surveyId:surveyId});
-  dispatch({type: FETCH_SURVEYS, payload: res.data});
-}
+  const res = await axios.post ('/api/survey_delete', {surveyId: surveyId});
+  dispatch ({type: FETCH_SURVEYS, payload: res.data});
+};
+
+export const sortSurvey = sortBy => async dispatch => {
+  const res = await axios.get ('/api/surveys', {
+    headers: {
+      'Content-Type': 'application/json',
+      sort_by: `${sortBy}`,
+    },
+  });
+  dispatch ({type: FETCH_SURVEYS, payload: res.data});
+};

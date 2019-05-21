@@ -13,9 +13,14 @@ const Survey = mongoose.model ('surveys');
 
 module.exports = app => {
   app.get ('/api/surveys', RequestLogin, async (req, res) => {
-    const surveyLists = await Survey.find ({_user: req.user.id}).select ({
-      recipients: false,
-    });
+    let sort = 'desc';
+    const sortBy = req.headers.sort_by;
+    if (typeof sortBy !== 'undefined') sort = sortBy;
+    const surveyLists = await Survey.find ({_user: req.user.id})
+      .sort ({yes: `${sort}`})
+      .select ({
+        recipients: false,
+      });
     res.send (surveyLists);
   });
 
