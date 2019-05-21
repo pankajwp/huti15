@@ -1,5 +1,3 @@
-// sendgrid prod api key: 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
-// sendgrid dev api key: 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
 const mongoose = require ('mongoose');
 const _ = require ('lodash');
 const {Path} = require ('path-parser');
