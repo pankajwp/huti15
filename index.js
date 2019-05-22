@@ -21,6 +21,7 @@ app.use (passport.session ());
 
 require ('./models/user');
 require ('./models/Survey');
+require ('./models/SurveyDraft');
 require ('./route/authRoute') (app);
 require ('./route/authStripe') (app);
 require ('./route/surveyRoute') (app);

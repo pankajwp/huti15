@@ -8,6 +8,7 @@ const Mailer = require ('../service/Mailer');
 const surveyTemplate = require ('../service/emailTemplates/surveyTemplate');
 
 const Survey = mongoose.model ('surveys');
+const SurveyDraft = mongoose.model ('surveyDraft');
 
 module.exports = app => {
   app.get ('/api/surveys', RequestLogin, async (req, res) => {
@@ -20,6 +21,13 @@ module.exports = app => {
         recipients: false,
       });
     res.send (surveyLists);
+  });
+
+  app.post ('/api/survey_draft', async (req, res) => {
+    const draftData = req.body.formValues;
+    const draftSurvey = new SurveyDraft (draftData);
+    const saveDraft = await draftSurvey.save ();
+    res.send (saveDraft);
   });
 
   app.get ('/api/surveys/:surveyId/:choice', (req, res) => {
