@@ -27,6 +27,12 @@ export const deleteSurvey = surveyId => async dispatch => {
   dispatch ({type: FETCH_SURVEYS, payload: res.data});
 };
 
+
+export const draftSurvey = () => async dispatch => {
+  console.log('hii');
+  dispatch ({type: FETCH_SURVEYS});
+}
+
 export const sortSurvey = sortBy => async dispatch => {
   const res = await axios.get ('/api/surveys', {
     headers: {

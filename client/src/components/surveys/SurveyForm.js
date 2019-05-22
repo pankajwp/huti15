@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {reduxForm, Field} from 'redux-form';
+import {reduxForm, Field, getFormValues} from 'redux-form';
 import SurveyFields from './SurveyFields';
 import validateEmail from '../../utils/validateEmails';
 import FormFields from './formFieldOb';
@@ -26,7 +26,10 @@ class SurveyForm extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit (this.props.onSurveySubmit)}>
           {this.renderFields ()}
-          <Link to="/surveys" className="btn-flat white-text red">Cancel</Link>
+          <Link to="/surveys" className="btn-flat white-text red">Cancel</Link>&nbsp;
+          <button type="button" onClick={() => (console.log(getFormValues('reduxFormData')))} className="yellow btn-flat center white-text darken-3">
+            Save as Draft
+          </button>
           <button type="submit" className="teal btn-flat right white-text">
             Next
             <i className="material-icons right">done</i>
