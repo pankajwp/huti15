@@ -1,6 +1,5 @@
 // production keys here
 // Google keys from Main google account project Emaily Prod
-// sendgrid api key: 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
 module.exports = {
   googleClientID: process.env.googleClientID,
   googleClientSecret: process.env.googleClientSecret,
